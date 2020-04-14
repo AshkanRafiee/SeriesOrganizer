@@ -1,4 +1,6 @@
-﻿
+# PowerShell Script to Remove Everything in filename except SxxExx.extention Format then create appropriate folders and move files into them!
+# Author: Ashkan Rafiee
+
 function Show-Organizer_psf {
 
 	#----------------------------------------------
@@ -173,9 +175,10 @@ function Show-Organizer_psf {
 			Get-ChildItem | Rename-Item -NewName { ($_.BaseName -replace '^.*(S\d{2}E\d{2}).*$', '$1') + $_.Extension }
 			Get-ChildItem | Rename-Item -NewName { ($_.BaseName -replace '^.*(S\d{2} E\d{2}).*$', '$1' -replace ' ', '') + $_.Extension }
 			Get-ChildItem | Rename-Item -NewName { ($_.BaseName -replace '^.*(S\d{2}.E\d{2}).*$', '$1' -replace '\.', '') + $_.Extension }
-		}	
+			Get-ChildItem | Rename-Item -NewName { ($_.BaseName -replace '^.*(S\d{2}-E\d{2}).*$', '$1' -replace '-', '') + $_.Extension }
+		}
 	}
-		
+	
 	$Create_Folders_Click={
 		#Creates Folders Appropriate to Seasons Names
 		if ($folderbrowsermoderndialog1.SelectedPath -eq "")
