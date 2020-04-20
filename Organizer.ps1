@@ -6,8 +6,8 @@ function Show-Organizer_psf {
 	#----------------------------------------------
 	#region Import the Assemblies
 	#----------------------------------------------
-	[void][reflection.assembly]::Load('System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089')
 	[void][reflection.assembly]::Load('System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a')
+	[void][reflection.assembly]::Load('System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089')
 	#endregion Import Assemblies
 
 	#----------------------------------------------
@@ -133,27 +133,37 @@ function Show-Organizer_psf {
 	#region Generated Form Objects
 	#----------------------------------------------
 	[System.Windows.Forms.Application]::EnableVisualStyles()
-	$formSeriesOrganizer = New-Object 'System.Windows.Forms.Form'
-	$labelEnterYourSeriesNameB = New-Object 'System.Windows.Forms.Label'
-	$buttonSearchIMDB = New-Object 'System.Windows.Forms.Button'
-	$SeriesName = New-Object 'System.Windows.Forms.TextBox'
-	$label2 = New-Object 'System.Windows.Forms.Label'
-	$label1 = New-Object 'System.Windows.Forms.Label'
-	$labelOptional = New-Object 'System.Windows.Forms.Label'
-	$buttonCapitalizeFiles = New-Object 'System.Windows.Forms.Button'
-	$buttonCreateSeriesFolderAn = New-Object 'System.Windows.Forms.Button'
-	$buttonCapitalizeFolders = New-Object 'System.Windows.Forms.Button'
-	$buttonBrowseFolder = New-Object 'System.Windows.Forms.Button'
-	$textboxFolder = New-Object 'System.Windows.Forms.TextBox'
-	$button2 = New-Object 'System.Windows.Forms.Button'
-	$labelThird = New-Object 'System.Windows.Forms.Label'
-	$labelSecond = New-Object 'System.Windows.Forms.Label'
-	$labelFirst = New-Object 'System.Windows.Forms.Label'
-	$labelMadeByAshkanRafiee = New-Object 'System.Windows.Forms.Label'
-	$labelOrganizeYourSeriesAu = New-Object 'System.Windows.Forms.Label'
+	$SeriesOrganizer = New-Object 'System.Windows.Forms.Form'
+	$Main = New-Object 'System.Windows.Forms.TabControl'
+	$tabpage1 = New-Object 'System.Windows.Forms.TabPage'
 	$Move_Files = New-Object 'System.Windows.Forms.Button'
-	$Create_Folders = New-Object 'System.Windows.Forms.Button'
 	$Rename = New-Object 'System.Windows.Forms.Button'
+	$Create_Folders = New-Object 'System.Windows.Forms.Button'
+	$labelOrganizeYourSeriesAu = New-Object 'System.Windows.Forms.Label'
+	$labelFirst = New-Object 'System.Windows.Forms.Label'
+	$labelSecond = New-Object 'System.Windows.Forms.Label'
+	$labelThird = New-Object 'System.Windows.Forms.Label'
+	$textboxFolder = New-Object 'System.Windows.Forms.TextBox'
+	$BrowseFolder = New-Object 'System.Windows.Forms.Button'
+	$More = New-Object 'System.Windows.Forms.TabPage'
+	$ADDToTheLast = New-Object 'System.Windows.Forms.Button'
+	$labelADDOrRemoveThisPartT = New-Object 'System.Windows.Forms.Label'
+	$CapitalizeAllFolderN = New-Object 'System.Windows.Forms.Button'
+	$REMOVE = New-Object 'System.Windows.Forms.Button'
+	$ADD = New-Object 'System.Windows.Forms.Button'
+	$addremove = New-Object 'System.Windows.Forms.TextBox'
+	$CapitalizeAllFileNam = New-Object 'System.Windows.Forms.Button'
+	$tabpage2 = New-Object 'System.Windows.Forms.TabPage'
+	$SearchIMDB = New-Object 'System.Windows.Forms.Button'
+	$labelEnterYourSeriesName = New-Object 'System.Windows.Forms.Label'
+	$CreateSeriesFolderAn = New-Object 'System.Windows.Forms.Button'
+	$SeriesName = New-Object 'System.Windows.Forms.TextBox'
+	$tabpage3 = New-Object 'System.Windows.Forms.TabPage'
+	$Github = New-Object 'System.Windows.Forms.Button'
+	$richtextbox1 = New-Object 'System.Windows.Forms.RichTextBox'
+	$SeriesOrganizerV220 = New-Object 'System.Windows.Forms.Label'
+	$Website = New-Object 'System.Windows.Forms.Button'
+	$MadeByAshkanRafiee = New-Object 'System.Windows.Forms.Label'
 	$buttonWebsite = New-Object 'System.Windows.Forms.Button'
 	$button1 = New-Object 'System.Windows.Forms.Button'
 	$folderbrowsermoderndialog1 = New-Object 'SAPIENTypes.FolderBrowserModernDialog'
@@ -222,7 +232,7 @@ function Show-Organizer_psf {
 		}
 	}
 		
-	$buttonBrowseFolder_Click3 = {
+	$BrowseFolder_Click3 = {
 		#Browse Desired Location to Work
 		if($folderbrowsermoderndialog1.ShowDialog() -eq 'OK')
 		{
@@ -231,7 +241,7 @@ function Show-Organizer_psf {
 		}
 	}
 	
-	$buttonCapitalizeFolders_Click = {
+	$CapitalizeAllFolderN_Click = {
 		if ($folderbrowsermoderndialog1.SelectedPath -eq "")
 		{
 			$textboxFolder.Text = "You Have to Choose Your Path First!!!"
@@ -250,7 +260,7 @@ function Show-Organizer_psf {
 		}
 	}
 	
-	$buttonCapitalizeFiles_Click = {
+	$CapitalizeAllFileNam_Click = {
 		if ($folderbrowsermoderndialog1.SelectedPath -eq "")
 		{
 			$textboxFolder.Text = "You Have to Choose Your Path First!!!"
@@ -263,7 +273,7 @@ function Show-Organizer_psf {
 		}
 	}
 	
-	$buttonCreateSeriesFolderAn_Click = {
+	$CreateSeriesFolderAn_Click = {
 		if ($folderbrowsermoderndialog1.SelectedPath -eq "")
 		{
 			$textboxFolder.Text = "You Have to Choose Your Path First!!!"
@@ -289,17 +299,76 @@ function Show-Organizer_psf {
 		}
 	}
 	
-	$labelMadeByAshkanRafiee_Click={
-		#Opens a Url To my Website
-		Start-Process "https:/AshkanRafiee.ir/main"
-	}
-		
-	$button2_Click = {
-		#Opens a Url to SeriesOrganizer Website
-		Start-Process "https:/AshkanRafiee.ir/SeriesOrganizer"
+	$ADD_Click = {
+		#Check if User Entered The Path
+		if ($folderbrowsermoderndialog1.SelectedPath -eq "")
+		{
+			$textboxFolder.Text = "You Have to Choose Your Path First!!!"
+			return $Error
+		}
+		else
+		{
+			#check if user entered the text
+			if ($addremove.Text -eq "")
+			{
+				$wshell = New-Object -ComObject Wscript.Shell
+				$wshell.Popup("You have to enter your Desired String!", 0, "Error!", 0x0)
+			}
+			else
+			{
+				#ADD Desired String to the first
+				Get-ChildItem | Rename-Item -NewName { $addremove.Text + $_.Name }
+			}
+		}
 	}
 	
-	$buttonSearchIMDB_Click = {
+	$ADDToTheLast_Click = {
+		#Check if User Entered The Path
+		if ($folderbrowsermoderndialog1.SelectedPath -eq "")
+		{
+			$textboxFolder.Text = "You Have to Choose Your Path First!!!"
+			return $Error
+		}
+		else
+		{
+			#check if user entered the text
+			if ($addremove.Text -eq "")
+			{
+				$wshell = New-Object -ComObject Wscript.Shell
+				$wshell.Popup("You have to enter your Desired String!", 0, "Error!", 0x0)
+			}
+			else
+			{
+				#ADD Desired String to the last
+				Get-ChildItem | Rename-Item -NewName { $_.BaseName + $addremove.Text + $_.Extension }
+			}
+		}
+	}
+	
+	$REMOVE_Click = {
+		#Check if User Entered The Path
+		if ($folderbrowsermoderndialog1.SelectedPath -eq "")
+		{
+			$wshell = New-Object -ComObject Wscript.Shell
+			$wshell.Popup("In Main Tab Choose Your Path First!", 0, "Error!", 0x0)
+		}
+		else
+		{
+			#check if user entered the text
+			if ($addremove.Text -eq "")
+			{
+				$wshell = New-Object -ComObject Wscript.Shell
+				$wshell.Popup("You have to enter your Desired String!", 0, "Error!", 0x0)
+			}
+			else
+			{
+				#Remove Desired String
+				Get-ChildItem | Rename-Item -NewName { ($_.BaseName -replace $addremove.Text, '') + $_.Extension }
+			}
+		}
+	}
+	
+	$SearchIMDB_Click = {
 		if ($SeriesName.Text -eq "")
 		{
 			$wshell = New-Object -ComObject Wscript.Shell
@@ -308,11 +377,29 @@ function Show-Organizer_psf {
 		else
 		{
 			#Search IMDB For Desired String
-			$query = $SeriesName.Text -replace " ","+"
+			$query = $SeriesName.Text -replace " ", "+"
 			Start-Process "https://www.imdb.com/find?q=$query"
 		}
 		
 	}
+	
+	$MadeByAshkanRafiee_Click={
+		#Opens a Url To my Website
+		Start-Process "https:/AshkanRafiee.ir/main"
+	}
+		
+	$Website_Click = {
+		#Opens a Url to SeriesOrganizer Website
+		Start-Process "https:/AshkanRafiee.ir/SeriesOrganizer"
+	}
+	
+	
+	$Github_Click={
+		#Open Github Page in browser
+		Start-Process "https://github.com/AshkanRafiee/SeriesOrganizer/releases"
+	}
+	
+	
 	
 	# --End User Generated Script--
 	#----------------------------------------------
@@ -322,7 +409,7 @@ function Show-Organizer_psf {
 	$Form_StateCorrection_Load=
 	{
 		#Correct the initial state of the form to prevent the .Net maximized form issue
-		$formSeriesOrganizer.WindowState = $InitialFormWindowState
+		$SeriesOrganizer.WindowState = $InitialFormWindowState
 	}
 	
 	$Form_Cleanup_FormClosed=
@@ -330,18 +417,22 @@ function Show-Organizer_psf {
 		#Remove all event handlers from the controls
 		try
 		{
-			$buttonSearchIMDB.remove_Click($buttonSearchIMDB_Click)
-			$buttonCapitalizeFiles.remove_Click($buttonCapitalizeFiles_Click)
-			$buttonCreateSeriesFolderAn.remove_Click($buttonCreateSeriesFolderAn_Click)
-			$buttonCapitalizeFolders.remove_Click($buttonCapitalizeFolders_Click)
-			$buttonBrowseFolder.remove_Click($buttonBrowseFolder_Click3)
-			$button2.remove_Click($button2_Click)
-			$labelMadeByAshkanRafiee.remove_Click($labelMadeByAshkanRafiee_Click)
 			$Move_Files.remove_Click($Move_Files_Click)
-			$Create_Folders.remove_Click($Create_Folders_Click)
 			$Rename.remove_Click($Rename_Click)
-			$formSeriesOrganizer.remove_Load($Form_StateCorrection_Load)
-			$formSeriesOrganizer.remove_FormClosed($Form_Cleanup_FormClosed)
+			$Create_Folders.remove_Click($Create_Folders_Click)
+			$BrowseFolder.remove_Click($BrowseFolder_Click3)
+			$ADDToTheLast.remove_Click($ADDToTheLast_Click)
+			$CapitalizeAllFolderN.remove_Click($CapitalizeAllFolderN_Click)
+			$REMOVE.remove_Click($REMOVE_Click)
+			$ADD.remove_Click($ADD_Click)
+			$CapitalizeAllFileNam.remove_Click($CapitalizeAllFileNam_Click)
+			$SearchIMDB.remove_Click($SearchIMDB_Click)
+			$CreateSeriesFolderAn.remove_Click($CreateSeriesFolderAn_Click)
+			$Github.remove_Click($Github_Click)
+			$Website.remove_Click($Website_Click)
+			$MadeByAshkanRafiee.remove_Click($MadeByAshkanRafiee_Click)
+			$SeriesOrganizer.remove_Load($Form_StateCorrection_Load)
+			$SeriesOrganizer.remove_FormClosed($Form_Cleanup_FormClosed)
 		}
 		catch { Out-Null <# Prevent PSScriptAnalyzer warning #> }
 	}
@@ -350,39 +441,25 @@ function Show-Organizer_psf {
 	#----------------------------------------------
 	#region Generated Form Code
 	#----------------------------------------------
-	$formSeriesOrganizer.SuspendLayout()
+	$SeriesOrganizer.SuspendLayout()
+	$Main.SuspendLayout()
+	$tabpage1.SuspendLayout()
+	$More.SuspendLayout()
+	$tabpage2.SuspendLayout()
+	$tabpage3.SuspendLayout()
 	#
-	# formSeriesOrganizer
+	# SeriesOrganizer
 	#
-	$formSeriesOrganizer.Controls.Add($labelEnterYourSeriesNameB)
-	$formSeriesOrganizer.Controls.Add($buttonSearchIMDB)
-	$formSeriesOrganizer.Controls.Add($SeriesName)
-	$formSeriesOrganizer.Controls.Add($label2)
-	$formSeriesOrganizer.Controls.Add($label1)
-	$formSeriesOrganizer.Controls.Add($labelOptional)
-	$formSeriesOrganizer.Controls.Add($buttonCapitalizeFiles)
-	$formSeriesOrganizer.Controls.Add($buttonCreateSeriesFolderAn)
-	$formSeriesOrganizer.Controls.Add($buttonCapitalizeFolders)
-	$formSeriesOrganizer.Controls.Add($buttonBrowseFolder)
-	$formSeriesOrganizer.Controls.Add($textboxFolder)
-	$formSeriesOrganizer.Controls.Add($button2)
-	$formSeriesOrganizer.Controls.Add($labelThird)
-	$formSeriesOrganizer.Controls.Add($labelSecond)
-	$formSeriesOrganizer.Controls.Add($labelFirst)
-	$formSeriesOrganizer.Controls.Add($labelMadeByAshkanRafiee)
-	$formSeriesOrganizer.Controls.Add($labelOrganizeYourSeriesAu)
-	$formSeriesOrganizer.Controls.Add($Move_Files)
-	$formSeriesOrganizer.Controls.Add($Create_Folders)
-	$formSeriesOrganizer.Controls.Add($Rename)
-	$formSeriesOrganizer.AccessibleDescription = 'Organize Your Series Automatically'
-	$formSeriesOrganizer.AccessibleName = 'Series Organizer'
-	$formSeriesOrganizer.AutoScaleDimensions = '6, 13'
-	$formSeriesOrganizer.AutoScaleMode = 'Font'
-	$formSeriesOrganizer.BackColor = 'PeachPuff'
-	$formSeriesOrganizer.ClientSize = '668, 322'
-	$formSeriesOrganizer.FormBorderStyle = 'Fixed3D'
+	$SeriesOrganizer.Controls.Add($Main)
+	$SeriesOrganizer.AccessibleDescription = 'Organize Your Series Automatically'
+	$SeriesOrganizer.AccessibleName = 'Series Organizer'
+	$SeriesOrganizer.AutoScaleDimensions = '6, 13'
+	$SeriesOrganizer.AutoScaleMode = 'Font'
+	$SeriesOrganizer.BackColor = 'Ivory'
+	$SeriesOrganizer.ClientSize = '538, 279'
+	$SeriesOrganizer.FormBorderStyle = 'Fixed3D'
 	#region Binary Data
-	$formSeriesOrganizer.Icon = [System.Convert]::FromBase64String('
+	$SeriesOrganizer.Icon = [System.Convert]::FromBase64String('
 AAABAAUAEBAAAAEAIABoBAAAVgAAABgYAAABACAAiAkAAL4EAAAgIAAAAQAgAKgQAABGDgAAMDAA
 AAEAIACoJQAA7h4AAAAAAAABACAAgUcAAJZEAAAoAAAAEAAAACAAAAABACAAAAAAAAAEAAAAAAAA
 AAAAAAAAAAAAAAAAQEREA0NGRwNdXGMAXFthAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1014,216 +1091,402 @@ XFMPv5sQqPZd7cdBj4ukXMql3DbjakerDqDxx7UJAw/a85SnXMql3Pblag2F2/oBzeuEfvWfplzK
 pdwVx3XsAZjqfwOqqwIdWpiUS7mU275cXQnoQnurUP2hbf1VyqVcyl0RXO3Q/x+8WAnNhO2tSgAA
 AABJRU5ErkJggg==')
 	#endregion
-	$formSeriesOrganizer.KeyPreview = $True
-	$formSeriesOrganizer.Name = 'formSeriesOrganizer'
-	$formSeriesOrganizer.Text = 'Series Organizer'
+	$SeriesOrganizer.KeyPreview = $True
+	$SeriesOrganizer.Name = 'SeriesOrganizer'
+	$SeriesOrganizer.Text = 'Series Organizer'
 	#
-	# labelEnterYourSeriesNameB
+	# Main
 	#
-	$labelEnterYourSeriesNameB.AutoSize = $True
-	$labelEnterYourSeriesNameB.Location = '484, 79'
-	$labelEnterYourSeriesNameB.Name = 'labelEnterYourSeriesNameB'
-	$labelEnterYourSeriesNameB.Size = '161, 17'
-	$labelEnterYourSeriesNameB.TabIndex = 20
-	$labelEnterYourSeriesNameB.Text = 'Enter Your Series Name Below'
-	$labelEnterYourSeriesNameB.UseCompatibleTextRendering = $True
+	$Main.Controls.Add($tabpage1)
+	$Main.Controls.Add($More)
+	$Main.Controls.Add($tabpage2)
+	$Main.Controls.Add($tabpage3)
+	$Main.Font = 'Segoe Script, 8.25pt, style=Bold'
+	$Main.Location = '-1, 0'
+	$Main.Name = 'Main'
+	$Main.SelectedIndex = 0
+	$Main.Size = '536, 278'
+	$Main.TabIndex = 21
 	#
-	# buttonSearchIMDB
+	# tabpage1
 	#
-	$buttonSearchIMDB.Location = '328, 191'
-	$buttonSearchIMDB.Name = 'buttonSearchIMDB'
-	$buttonSearchIMDB.Size = '139, 71'
-	$buttonSearchIMDB.TabIndex = 19
-	$buttonSearchIMDB.Text = 'Search IMDB'
-	$buttonSearchIMDB.UseCompatibleTextRendering = $True
-	$buttonSearchIMDB.UseVisualStyleBackColor = $True
-	$buttonSearchIMDB.add_Click($buttonSearchIMDB_Click)
-	#
-	# SeriesName
-	#
-	$SeriesName.Location = '484, 99'
-	$SeriesName.Name = 'SeriesName'
-	$SeriesName.Size = '161, 20'
-	$SeriesName.TabIndex = 18
-	#
-	# label2
-	#
-	$label2.AutoSize = $True
-	$label2.Location = '378, 264'
-	$label2.Name = 'label2'
-	$label2.Size = '46, 17'
-	$label2.TabIndex = 17
-	$label2.Text = 'Optional'
-	$label2.UseCompatibleTextRendering = $True
-	#
-	# label1
-	#
-	$label1.AutoSize = $True
-	$label1.Location = '226, 264'
-	$label1.Name = 'label1'
-	$label1.Size = '46, 17'
-	$label1.TabIndex = 16
-	$label1.Text = 'Optional'
-	$label1.UseCompatibleTextRendering = $True
-	#
-	# labelOptional
-	#
-	$labelOptional.AutoSize = $True
-	$labelOptional.Location = '76, 264'
-	$labelOptional.Name = 'labelOptional'
-	$labelOptional.Size = '46, 17'
-	$labelOptional.TabIndex = 15
-	$labelOptional.Text = 'Optional'
-	$labelOptional.UseCompatibleTextRendering = $True
-	#
-	# buttonCapitalizeFiles
-	#
-	$buttonCapitalizeFiles.Location = '24, 190'
-	$buttonCapitalizeFiles.Name = 'buttonCapitalizeFiles'
-	$buttonCapitalizeFiles.Size = '146, 71'
-	$buttonCapitalizeFiles.TabIndex = 14
-	$buttonCapitalizeFiles.Text = 'Capitalize Files'
-	$buttonCapitalizeFiles.UseCompatibleTextRendering = $True
-	$buttonCapitalizeFiles.UseVisualStyleBackColor = $True
-	$buttonCapitalizeFiles.add_Click($buttonCapitalizeFiles_Click)
-	#
-	# buttonCreateSeriesFolderAn
-	#
-	$buttonCreateSeriesFolderAn.Location = '484, 125'
-	$buttonCreateSeriesFolderAn.Name = 'buttonCreateSeriesFolderAn'
-	$buttonCreateSeriesFolderAn.Size = '161, 136'
-	$buttonCreateSeriesFolderAn.TabIndex = 13
-	$buttonCreateSeriesFolderAn.Text = 'Create Series Folder And Move Everything in it'
-	$buttonCreateSeriesFolderAn.UseCompatibleTextRendering = $True
-	$buttonCreateSeriesFolderAn.UseVisualStyleBackColor = $True
-	$buttonCreateSeriesFolderAn.add_Click($buttonCreateSeriesFolderAn_Click)
-	#
-	# buttonCapitalizeFolders
-	#
-	$buttonCapitalizeFolders.Location = '176, 190'
-	$buttonCapitalizeFolders.Name = 'buttonCapitalizeFolders'
-	$buttonCapitalizeFolders.Size = '146, 72'
-	$buttonCapitalizeFolders.TabIndex = 12
-	$buttonCapitalizeFolders.Text = 'Capitalize Folders'
-	$buttonCapitalizeFolders.UseCompatibleTextRendering = $True
-	$buttonCapitalizeFolders.UseVisualStyleBackColor = $True
-	$buttonCapitalizeFolders.add_Click($buttonCapitalizeFolders_Click)
-	#
-	# buttonBrowseFolder
-	#
-	$buttonBrowseFolder.Location = '448, 40'
-	$buttonBrowseFolder.Name = 'buttonBrowseFolder'
-	$buttonBrowseFolder.Size = '30, 23'
-	$buttonBrowseFolder.TabIndex = 4
-	$buttonBrowseFolder.Text = '...'
-	$buttonBrowseFolder.UseCompatibleTextRendering = $True
-	$buttonBrowseFolder.UseVisualStyleBackColor = $True
-	$buttonBrowseFolder.add_Click($buttonBrowseFolder_Click3)
-	#
-	# textboxFolder
-	#
-	$textboxFolder.AutoCompleteMode = 'SuggestAppend'
-	$textboxFolder.AutoCompleteSource = 'FileSystemDirectories'
-	$textboxFolder.Location = '214, 42'
-	$textboxFolder.Name = 'textboxFolder'
-	$textboxFolder.Size = '228, 20'
-	$textboxFolder.TabIndex = 3
-	$textboxFolder.Text = 'Browse Desired Folder to Organize...'
-	#
-	# button2
-	#
-	$button2.Location = '214, 296'
-	$button2.Name = 'button2'
-	$button2.Size = '75, 23'
-	$button2.TabIndex = 11
-	$button2.Text = 'Website'
-	$button2.UseCompatibleTextRendering = $True
-	$button2.UseVisualStyleBackColor = $True
-	$button2.add_Click($button2_Click)
-	#
-	# labelThird
-	#
-	$labelThird.AutoSize = $True
-	$labelThird.Location = '378, 169'
-	$labelThird.Name = 'labelThird'
-	$labelThird.Size = '30, 17'
-	$labelThird.TabIndex = 10
-	$labelThird.Text = 'Third'
-	$labelThird.UseCompatibleTextRendering = $True
-	#
-	# labelSecond
-	#
-	$labelSecond.AutoSize = $True
-	$labelSecond.Location = '226, 169'
-	$labelSecond.Name = 'labelSecond'
-	$labelSecond.Size = '43, 17'
-	$labelSecond.TabIndex = 9
-	$labelSecond.Text = 'Second'
-	$labelSecond.UseCompatibleTextRendering = $True
-	#
-	# labelFirst
-	#
-	$labelFirst.AutoSize = $True
-	$labelFirst.Location = '76, 169'
-	$labelFirst.Name = 'labelFirst'
-	$labelFirst.Size = '26, 17'
-	$labelFirst.TabIndex = 8
-	$labelFirst.Text = 'First'
-	$labelFirst.UseCompatibleTextRendering = $True
-	#
-	# labelMadeByAshkanRafiee
-	#
-	$labelMadeByAshkanRafiee.AutoSize = $True
-	$labelMadeByAshkanRafiee.Location = '532, 296'
-	$labelMadeByAshkanRafiee.Name = 'labelMadeByAshkanRafiee'
-	$labelMadeByAshkanRafiee.Size = '124, 17'
-	$labelMadeByAshkanRafiee.TabIndex = 7
-	$labelMadeByAshkanRafiee.Text = 'Made by Ashkan Rafiee'
-	$labelMadeByAshkanRafiee.UseCompatibleTextRendering = $True
-	$labelMadeByAshkanRafiee.add_Click($labelMadeByAshkanRafiee_Click)
-	#
-	# labelOrganizeYourSeriesAu
-	#
-	$labelOrganizeYourSeriesAu.AutoSize = $True
-	$labelOrganizeYourSeriesAu.Location = '243, 13'
-	$labelOrganizeYourSeriesAu.Name = 'labelOrganizeYourSeriesAu'
-	$labelOrganizeYourSeriesAu.Size = '186, 17'
-	$labelOrganizeYourSeriesAu.TabIndex = 4
-	$labelOrganizeYourSeriesAu.Text = 'Organize Your Series Automatically!'
-	$labelOrganizeYourSeriesAu.UseCompatibleTextRendering = $True
+	$tabpage1.Controls.Add($Move_Files)
+	$tabpage1.Controls.Add($Rename)
+	$tabpage1.Controls.Add($Create_Folders)
+	$tabpage1.Controls.Add($labelOrganizeYourSeriesAu)
+	$tabpage1.Controls.Add($labelFirst)
+	$tabpage1.Controls.Add($labelSecond)
+	$tabpage1.Controls.Add($labelThird)
+	$tabpage1.Controls.Add($textboxFolder)
+	$tabpage1.Controls.Add($BrowseFolder)
+	$tabpage1.BackColor = 'Ivory'
+	$tabpage1.Font = 'Segoe Script, 8.25pt, style=Bold'
+	$tabpage1.ForeColor = 'RoyalBlue'
+	$tabpage1.Location = '4, 26'
+	$tabpage1.Name = 'tabpage1'
+	$tabpage1.Padding = '3, 3, 3, 3'
+	$tabpage1.Size = '528, 248'
+	$tabpage1.TabIndex = 0
+	$tabpage1.Text = 'Main'
 	#
 	# Move_Files
 	#
-	$Move_Files.Location = '328, 79'
+	$Move_Files.BackColor = 'Khaki'
+	$Move_Files.Cursor = 'Hand'
+	$Move_Files.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$Move_Files.Location = '348, 82'
 	$Move_Files.Name = 'Move_Files'
 	$Move_Files.Size = '139, 87'
 	$Move_Files.TabIndex = 3
 	$Move_Files.Text = 'Move Files to Folders'
 	$Move_Files.UseCompatibleTextRendering = $True
-	$Move_Files.UseVisualStyleBackColor = $True
+	$Move_Files.UseVisualStyleBackColor = $False
 	$Move_Files.add_Click($Move_Files_Click)
-	#
-	# Create_Folders
-	#
-	$Create_Folders.Location = '176, 79'
-	$Create_Folders.Name = 'Create_Folders'
-	$Create_Folders.Size = '146, 87'
-	$Create_Folders.TabIndex = 2
-	$Create_Folders.Text = 'Create Seasons Folders'
-	$Create_Folders.UseCompatibleTextRendering = $True
-	$Create_Folders.UseVisualStyleBackColor = $True
-	$Create_Folders.add_Click($Create_Folders_Click)
 	#
 	# Rename
 	#
-	$Rename.Location = '24, 79'
+	$Rename.BackColor = 'Khaki'
+	$Rename.Cursor = 'Hand'
+	$Rename.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$Rename.Location = '44, 82'
 	$Rename.Name = 'Rename'
 	$Rename.Size = '146, 87'
 	$Rename.TabIndex = 1
 	$Rename.Text = 'Rename Files To SxxExx'
 	$Rename.UseCompatibleTextRendering = $True
-	$Rename.UseVisualStyleBackColor = $True
+	$Rename.UseVisualStyleBackColor = $False
 	$Rename.add_Click($Rename_Click)
+	#
+	# Create_Folders
+	#
+	$Create_Folders.BackColor = 'Khaki'
+	$Create_Folders.Cursor = 'Hand'
+	$Create_Folders.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$Create_Folders.Location = '196, 82'
+	$Create_Folders.Name = 'Create_Folders'
+	$Create_Folders.Size = '146, 87'
+	$Create_Folders.TabIndex = 2
+	$Create_Folders.Text = 'Create Seasons Folders'
+	$Create_Folders.UseCompatibleTextRendering = $True
+	$Create_Folders.UseVisualStyleBackColor = $False
+	$Create_Folders.add_Click($Create_Folders_Click)
+	#
+	# labelOrganizeYourSeriesAu
+	#
+	$labelOrganizeYourSeriesAu.AutoSize = $True
+	$labelOrganizeYourSeriesAu.Font = 'Times New Roman, 12pt'
+	$labelOrganizeYourSeriesAu.Location = '148, 28'
+	$labelOrganizeYourSeriesAu.Name = 'labelOrganizeYourSeriesAu'
+	$labelOrganizeYourSeriesAu.Size = '252, 23'
+	$labelOrganizeYourSeriesAu.TabIndex = 4
+	$labelOrganizeYourSeriesAu.Text = 'Organize Your Series Automatically!'
+	$labelOrganizeYourSeriesAu.UseCompatibleTextRendering = $True
+	#
+	# labelFirst
+	#
+	$labelFirst.AutoSize = $True
+	$labelFirst.Location = '96, 172'
+	$labelFirst.Name = 'labelFirst'
+	$labelFirst.Size = '31, 22'
+	$labelFirst.TabIndex = 8
+	$labelFirst.Text = 'First'
+	$labelFirst.UseCompatibleTextRendering = $True
+	#
+	# labelSecond
+	#
+	$labelSecond.AutoSize = $True
+	$labelSecond.Location = '246, 172'
+	$labelSecond.Name = 'labelSecond'
+	$labelSecond.Size = '46, 22'
+	$labelSecond.TabIndex = 9
+	$labelSecond.Text = 'Second'
+	$labelSecond.UseCompatibleTextRendering = $True
+	#
+	# labelThird
+	#
+	$labelThird.AutoSize = $True
+	$labelThird.Location = '398, 172'
+	$labelThird.Name = 'labelThird'
+	$labelThird.Size = '40, 22'
+	$labelThird.TabIndex = 10
+	$labelThird.Text = 'Third'
+	$labelThird.UseCompatibleTextRendering = $True
+	#
+	# textboxFolder
+	#
+	$textboxFolder.AutoCompleteMode = 'SuggestAppend'
+	$textboxFolder.AutoCompleteSource = 'FileSystemDirectories'
+	$textboxFolder.Enabled = $False
+	$textboxFolder.Font = 'Times New Roman, 8.25pt'
+	$textboxFolder.Location = '148, 56'
+	$textboxFolder.Name = 'textboxFolder'
+	$textboxFolder.Size = '228, 20'
+	$textboxFolder.TabIndex = 3
+	$textboxFolder.Text = 'Browse Desired Folder to Organize...'
+	#
+	# BrowseFolder
+	#
+	$BrowseFolder.BackColor = 'Transparent'
+	$BrowseFolder.Location = '382, 54'
+	$BrowseFolder.Name = 'BrowseFolder'
+	$BrowseFolder.Size = '30, 23'
+	$BrowseFolder.TabIndex = 4
+	$BrowseFolder.Text = '...'
+	$BrowseFolder.UseCompatibleTextRendering = $True
+	$BrowseFolder.UseVisualStyleBackColor = $False
+	$BrowseFolder.add_Click($BrowseFolder_Click3)
+	#
+	# More
+	#
+	$More.Controls.Add($ADDToTheLast)
+	$More.Controls.Add($labelADDOrRemoveThisPartT)
+	$More.Controls.Add($CapitalizeAllFolderN)
+	$More.Controls.Add($REMOVE)
+	$More.Controls.Add($ADD)
+	$More.Controls.Add($addremove)
+	$More.Controls.Add($CapitalizeAllFileNam)
+	$More.BackColor = 'Ivory'
+	$More.Location = '4, 26'
+	$More.Name = 'More'
+	$More.Padding = '3, 3, 3, 3'
+	$More.Size = '528, 248'
+	$More.TabIndex = 1
+	$More.Text = 'Optional'
+	#
+	# ADDToTheLast
+	#
+	$ADDToTheLast.BackColor = 'Khaki'
+	$ADDToTheLast.Cursor = 'Hand'
+	$ADDToTheLast.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$ADDToTheLast.ForeColor = 'RoyalBlue'
+	$ADDToTheLast.Location = '335, 82'
+	$ADDToTheLast.Name = 'ADDToTheLast'
+	$ADDToTheLast.Size = '139, 53'
+	$ADDToTheLast.TabIndex = 29
+	$ADDToTheLast.Text = 'ADD to the last'
+	$ADDToTheLast.UseCompatibleTextRendering = $True
+	$ADDToTheLast.UseVisualStyleBackColor = $False
+	$ADDToTheLast.add_Click($ADDToTheLast_Click)
+	#
+	# labelADDOrRemoveThisPartT
+	#
+	$labelADDOrRemoveThisPartT.AutoSize = $True
+	$labelADDOrRemoveThisPartT.Font = 'Times New Roman, 12pt'
+	$labelADDOrRemoveThisPartT.Location = '101, 30'
+	$labelADDOrRemoveThisPartT.Name = 'labelADDOrRemoveThisPartT'
+	$labelADDOrRemoveThisPartT.Size = '322, 23'
+	$labelADDOrRemoveThisPartT.TabIndex = 28
+	$labelADDOrRemoveThisPartT.Text = 'ADD or Remove this part to existing file names'
+	$labelADDOrRemoveThisPartT.UseCompatibleTextRendering = $True
+	#
+	# CapitalizeAllFolderN
+	#
+	$CapitalizeAllFolderN.BackColor = 'Khaki'
+	$CapitalizeAllFolderN.Cursor = 'Hand'
+	$CapitalizeAllFolderN.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$CapitalizeAllFolderN.ForeColor = 'RoyalBlue'
+	$CapitalizeAllFolderN.Location = '41, 141'
+	$CapitalizeAllFolderN.Name = 'CapitalizeAllFolderN'
+	$CapitalizeAllFolderN.Size = '209, 66'
+	$CapitalizeAllFolderN.TabIndex = 12
+	$CapitalizeAllFolderN.Text = 'Capitalize all Folder Names'
+	$CapitalizeAllFolderN.UseCompatibleTextRendering = $True
+	$CapitalizeAllFolderN.UseVisualStyleBackColor = $False
+	$CapitalizeAllFolderN.add_Click($CapitalizeAllFolderN_Click)
+	#
+	# REMOVE
+	#
+	$REMOVE.BackColor = 'Khaki'
+	$REMOVE.Cursor = 'Hand'
+	$REMOVE.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$REMOVE.ForeColor = 'RoyalBlue'
+	$REMOVE.Location = '186, 82'
+	$REMOVE.Name = 'REMOVE'
+	$REMOVE.Size = '143, 53'
+	$REMOVE.TabIndex = 22
+	$REMOVE.Text = 'REMOVE'
+	$REMOVE.UseCompatibleTextRendering = $True
+	$REMOVE.UseVisualStyleBackColor = $False
+	$REMOVE.add_Click($REMOVE_Click)
+	#
+	# ADD
+	#
+	$ADD.BackColor = 'Khaki'
+	$ADD.Cursor = 'Hand'
+	$ADD.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$ADD.ForeColor = 'RoyalBlue'
+	$ADD.Location = '41, 82'
+	$ADD.Name = 'ADD'
+	$ADD.Size = '139, 53'
+	$ADD.TabIndex = 21
+	$ADD.Text = 'ADD to the first'
+	$ADD.UseCompatibleTextRendering = $True
+	$ADD.UseVisualStyleBackColor = $False
+	$ADD.add_Click($ADD_Click)
+	#
+	# addremove
+	#
+	$addremove.Font = 'Times New Roman, 9.75pt'
+	$addremove.Location = '41, 56'
+	$addremove.Name = 'addremove'
+	$addremove.Size = '433, 22'
+	$addremove.TabIndex = 23
+	#
+	# CapitalizeAllFileNam
+	#
+	$CapitalizeAllFileNam.BackColor = 'Khaki'
+	$CapitalizeAllFileNam.Cursor = 'Hand'
+	$CapitalizeAllFileNam.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$CapitalizeAllFileNam.ForeColor = 'RoyalBlue'
+	$CapitalizeAllFileNam.Location = '265, 141'
+	$CapitalizeAllFileNam.Name = 'CapitalizeAllFileNam'
+	$CapitalizeAllFileNam.Size = '209, 66'
+	$CapitalizeAllFileNam.TabIndex = 14
+	$CapitalizeAllFileNam.Text = 'Capitalize all File Names'
+	$CapitalizeAllFileNam.UseCompatibleTextRendering = $True
+	$CapitalizeAllFileNam.UseVisualStyleBackColor = $False
+	$CapitalizeAllFileNam.add_Click($CapitalizeAllFileNam_Click)
+	#
+	# tabpage2
+	#
+	$tabpage2.Controls.Add($SearchIMDB)
+	$tabpage2.Controls.Add($labelEnterYourSeriesName)
+	$tabpage2.Controls.Add($CreateSeriesFolderAn)
+	$tabpage2.Controls.Add($SeriesName)
+	$tabpage2.BackColor = 'Ivory'
+	$tabpage2.Location = '4, 26'
+	$tabpage2.Name = 'tabpage2'
+	$tabpage2.Padding = '3, 3, 3, 3'
+	$tabpage2.Size = '528, 248'
+	$tabpage2.TabIndex = 2
+	$tabpage2.Text = 'IMDB'
+	#
+	# SearchIMDB
+	#
+	$SearchIMDB.BackColor = 'Khaki'
+	$SearchIMDB.Cursor = 'Hand'
+	$SearchIMDB.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$SearchIMDB.ForeColor = 'RoyalBlue'
+	$SearchIMDB.Location = '106, 80'
+	$SearchIMDB.Name = 'SearchIMDB'
+	$SearchIMDB.Size = '298, 68'
+	$SearchIMDB.TabIndex = 19
+	$SearchIMDB.Text = 'Search IMDB'
+	$SearchIMDB.UseCompatibleTextRendering = $True
+	$SearchIMDB.UseVisualStyleBackColor = $False
+	$SearchIMDB.add_Click($SearchIMDB_Click)
+	#
+	# labelEnterYourSeriesName
+	#
+	$labelEnterYourSeriesName.AutoSize = $True
+	$labelEnterYourSeriesName.Font = 'Times New Roman, 12pt'
+	$labelEnterYourSeriesName.Location = '177, 28'
+	$labelEnterYourSeriesName.Name = 'labelEnterYourSeriesName'
+	$labelEnterYourSeriesName.Size = '167, 23'
+	$labelEnterYourSeriesName.TabIndex = 20
+	$labelEnterYourSeriesName.Text = 'Enter Your Series Name'
+	$labelEnterYourSeriesName.UseCompatibleTextRendering = $True
+	#
+	# CreateSeriesFolderAn
+	#
+	$CreateSeriesFolderAn.BackColor = 'Khaki'
+	$CreateSeriesFolderAn.Cursor = 'Hand'
+	$CreateSeriesFolderAn.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$CreateSeriesFolderAn.ForeColor = 'RoyalBlue'
+	$CreateSeriesFolderAn.Location = '106, 152'
+	$CreateSeriesFolderAn.Name = 'CreateSeriesFolderAn'
+	$CreateSeriesFolderAn.Size = '298, 68'
+	$CreateSeriesFolderAn.TabIndex = 13
+	$CreateSeriesFolderAn.Text = 'Create Series Folder And Move Everything in it'
+	$CreateSeriesFolderAn.UseCompatibleTextRendering = $True
+	$CreateSeriesFolderAn.UseVisualStyleBackColor = $False
+	$CreateSeriesFolderAn.add_Click($CreateSeriesFolderAn_Click)
+	#
+	# SeriesName
+	#
+	$SeriesName.Location = '106, 54'
+	$SeriesName.Name = 'SeriesName'
+	$SeriesName.Size = '298, 25'
+	$SeriesName.TabIndex = 18
+	#
+	# tabpage3
+	#
+	$tabpage3.Controls.Add($Github)
+	$tabpage3.Controls.Add($richtextbox1)
+	$tabpage3.Controls.Add($SeriesOrganizerV220)
+	$tabpage3.Controls.Add($Website)
+	$tabpage3.Controls.Add($MadeByAshkanRafiee)
+	$tabpage3.BackColor = 'Ivory'
+	$tabpage3.Location = '4, 26'
+	$tabpage3.Name = 'tabpage3'
+	$tabpage3.Padding = '3, 3, 3, 3'
+	$tabpage3.Size = '528, 248'
+	$tabpage3.TabIndex = 3
+	$tabpage3.Text = 'About'
+	#
+	# Github
+	#
+	$Github.BackColor = 'Khaki'
+	$Github.Cursor = 'Hand'
+	$Github.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$Github.ForeColor = 'RoyalBlue'
+	$Github.Location = '262, 127'
+	$Github.Name = 'Github'
+	$Github.Size = '112, 32'
+	$Github.TabIndex = 14
+	$Github.Text = 'Github'
+	$Github.UseCompatibleTextRendering = $True
+	$Github.UseVisualStyleBackColor = $False
+	$Github.add_Click($Github_Click)
+	#
+	# richtextbox1
+	#
+	$richtextbox1.BackColor = 'Khaki'
+	$richtextbox1.Enabled = $False
+	$richtextbox1.Font = 'Microsoft Sans Serif, 8.25pt'
+	$richtextbox1.Location = '51, 45'
+	$richtextbox1.Name = 'richtextbox1'
+	$richtextbox1.Size = '423, 36'
+	$richtextbox1.TabIndex = 13
+	$richtextbox1.Text = 'Copyright (C) 2020 AshkanRafiee All Rights Reserved.
+SeriesOrganizer Designed to organize your series files and folders Automatically!
+'
+	#
+	# SeriesOrganizerV220
+	#
+	$SeriesOrganizerV220.AutoSize = $True
+	$SeriesOrganizerV220.Location = '384, 222'
+	$SeriesOrganizerV220.Name = 'SeriesOrganizerV220'
+	$SeriesOrganizerV220.Size = '141, 22'
+	$SeriesOrganizerV220.TabIndex = 12
+	$SeriesOrganizerV220.Text = 'SeriesOrganizer v2.2.0'
+	$SeriesOrganizerV220.UseCompatibleTextRendering = $True
+	#
+	# Website
+	#
+	$Website.BackColor = 'Khaki'
+	$Website.Cursor = 'Hand'
+	$Website.Font = 'Times New Roman, 9.75pt, style=Bold'
+	$Website.ForeColor = 'RoyalBlue'
+	$Website.Location = '143, 127'
+	$Website.Name = 'Website'
+	$Website.Size = '113, 32'
+	$Website.TabIndex = 11
+	$Website.Text = 'Website'
+	$Website.UseCompatibleTextRendering = $True
+	$Website.UseVisualStyleBackColor = $False
+	$Website.add_Click($Website_Click)
+	#
+	# MadeByAshkanRafiee
+	#
+	$MadeByAshkanRafiee.AutoSize = $True
+	$MadeByAshkanRafiee.Location = '9, 222'
+	$MadeByAshkanRafiee.Name = 'MadeByAshkanRafiee'
+	$MadeByAshkanRafiee.Size = '152, 22'
+	$MadeByAshkanRafiee.TabIndex = 7
+	$MadeByAshkanRafiee.Text = 'Made by Ashkan Rafiee'
+	$MadeByAshkanRafiee.UseCompatibleTextRendering = $True
+	$MadeByAshkanRafiee.add_Click($MadeByAshkanRafiee_Click)
 	#
 	# buttonWebsite
 	#
@@ -1245,19 +1508,24 @@ AABJRU5ErkJggg==')
 	#
 	# folderbrowsermoderndialog1
 	#
-	$formSeriesOrganizer.ResumeLayout()
+	$tabpage3.ResumeLayout()
+	$tabpage2.ResumeLayout()
+	$More.ResumeLayout()
+	$tabpage1.ResumeLayout()
+	$Main.ResumeLayout()
+	$SeriesOrganizer.ResumeLayout()
 	#endregion Generated Form Code
 
 	#----------------------------------------------
 
 	#Save the initial state of the form
-	$InitialFormWindowState = $formSeriesOrganizer.WindowState
+	$InitialFormWindowState = $SeriesOrganizer.WindowState
 	#Init the OnLoad event to correct the initial state of the form
-	$formSeriesOrganizer.add_Load($Form_StateCorrection_Load)
+	$SeriesOrganizer.add_Load($Form_StateCorrection_Load)
 	#Clean up the control events
-	$formSeriesOrganizer.add_FormClosed($Form_Cleanup_FormClosed)
+	$SeriesOrganizer.add_FormClosed($Form_Cleanup_FormClosed)
 	#Show the Form
-	return $formSeriesOrganizer.ShowDialog()
+	return $SeriesOrganizer.ShowDialog()
 
 } #End Function
 
