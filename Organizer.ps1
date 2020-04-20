@@ -303,8 +303,8 @@ function Show-Organizer_psf {
 		#Check if User Entered The Path
 		if ($folderbrowsermoderndialog1.SelectedPath -eq "")
 		{
-			$textboxFolder.Text = "You Have to Choose Your Path First!!!"
-			return $Error
+			$wshell = New-Object -ComObject Wscript.Shell
+			$wshell.Popup("In Main Tab Choose Your Path First!", 0, "Error!", 0x0)
 		}
 		else
 		{
@@ -326,8 +326,8 @@ function Show-Organizer_psf {
 		#Check if User Entered The Path
 		if ($folderbrowsermoderndialog1.SelectedPath -eq "")
 		{
-			$textboxFolder.Text = "You Have to Choose Your Path First!!!"
-			return $Error
+			$wshell = New-Object -ComObject Wscript.Shell
+			$wshell.Popup("In Main Tab Choose Your Path First!", 0, "Error!", 0x0)
 		}
 		else
 		{
