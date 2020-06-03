@@ -7,4 +7,4 @@ Open the Organizer.exe and Browse where the Series Episodes and Subtitles are ex
 Remember to Place Everything in a folder instead of places like Desktop, etc.
 
 ## Copyright
-I'm not offering any License For This Repository, You can Just Use it as it is.
+Give Me the credits if you are using any part of my code!
